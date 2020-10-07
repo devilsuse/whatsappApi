@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="DEBUG" name="default">
+	<Properties>
+		<Property name="artefact">whatsappApi</Property>
+	</Properties>
+	<Appenders>
+		<RollingFile name="rollingFileApp"
+			fileName="logs/${artefact}-app.log"
+			filePattern="logs/archive/${artefact}-app.%d{yyyy-MM-dd}.%i.log.gz"
+			append="true">
+			<PatternLayout>
+				<!-- <Pattern>%d %p %c{1.} [%t] %m%n</Pattern> -->
+				<Pattern>[%date{yyyy-MM-dd HH:mm:ss}] [%level{length=1}] [%thread]
+					[%logger{1}] %message%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="100 MB" />
+			</Policies>
+		</RollingFile>
+		<Async name="asyncAppenderApp">
+			<AppenderRef ref="rollingFileApp" />
+		</Async>
+	</Appenders>
+	<Loggers>
+		<Logger name="app" level="DEBUG" additivity="false">
+			<AppenderRef ref="asyncAppenderApp" />
+		</Logger>
+		<!-- Use below logger when sql statements prepared by print is wished to be printed in log -->
+		<Logger name="org.springframework.jdbc.core.JdbcTemplate" level="trace" additivity="false">
+			<AppenderRef ref="rollingFileApp" />
+		</Logger>
+		<Root level="INFO">
+			<AppenderRef ref="asyncAppenderApp" />
+		</Root>
+	</Loggers>
+</Configuration>

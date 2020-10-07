@@ -1,0 +1,10 @@
+application.version=Implementation-Version: 1.0
+application.formatted-version=1.0
+spring-boot.version=2.2.5.RELEASE
+spring-boot.formatted-version=2.2.5.RELEASE
+Ansi.NAME=Ansi.RED
+application.title= Whatsapp Partner API
+
+Starting Application !!!
+
+
