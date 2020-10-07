@@ -5,6 +5,7 @@ import static org.springframework.http.HttpStatus.OK;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import com.en.whatsapp.dto.CallbackDto;
 import com.en.whatsapp.dto.ErrorApi;
 import com.en.whatsapp.dto.GupshupRequest;
 import com.en.whatsapp.dto.RequestMessageDto;
@@ -57,4 +58,15 @@ public class AppUtils
 		builder.apikey(requestMessageDto.getApikey());
 		return builder.build();
 	}
+	
+	public static RequestMessageDto fromRequestMessage(CallbackDto callbackDto) {
+		RequestMessageDto requestMessageDto = new RequestMessageDto();
+		requestMessageDto.setApikey(apikey);
+		requestMessageDto.setDestination(destination);
+		requestMessageDto.setMessage(message);
+		requestMessageDto.setSource(source);
+		
+		return builder.build();
+	}
+	
 }
